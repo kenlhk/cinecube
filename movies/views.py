@@ -13,7 +13,7 @@ def index(request):
     context_dict['title'] = "CineCube"
     context_dict['now_playing'] = Movie.objects.order_by('showing_time')[:5]
     
-    return render(request, 'movies/index.html', context=context_dict)
+    return render(request, 'movies/movies_index.html', context=context_dict)
 
 def movie_list(request):
     context_dict = {}
@@ -24,7 +24,7 @@ def movie_list(request):
     except Movie.DoesNotExist:
         context_dict['list'] = None
         
-    return render(request, 'movies/list.html', context=context_dict)    
+    return render(request, 'movies/movies_list.html', context=context_dict)    
     
 
 def show_movie(request, movie_id_slug):
@@ -36,5 +36,5 @@ def show_movie(request, movie_id_slug):
     except Movie.DoesNotExitst:
         context_dict['movie'] = None
     
-    return render(request, 'movies/movie.html', context=context_dict)
+    return render(request, 'movies/movies_movie.html', context=context_dict)
 

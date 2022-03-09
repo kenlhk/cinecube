@@ -1,13 +1,9 @@
 from datetime import datetime
 from distutils.command.upload import upload
 from encodings import utf_8
-from msilib.schema import Directory
-from unicodedata import name
 from django.db import models
 from django.template.defaultfilters import slugify
 
-from PIL import Image
-from django.core.files import File
 import os
 import urllib.request as req
 
