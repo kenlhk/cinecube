@@ -2,10 +2,29 @@
 {% load staticfiles %}
 
 <html>
-
     <head>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
         <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
+        <script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
      <!--css-->
     {% block styles %}
     {% endblock %}
@@ -29,8 +48,6 @@
         <div>
             <ul>
                 <li><a href="{% url 'movies:index' %}">Index</a></li>
-                <li><a href="{% url 'userprofile:login' %}">Login</a></li>
-                <li><a href="{% url 'userprofile:register' %}">Register</a></li>
             </ul>
         </div>
     </body>

@@ -34,12 +34,12 @@ class Movie(models.Model):
         #     os.path.basename(self.poster_path),
         #     File(open(result[0]))
         #     )
-        
+
         request = req.Request(self.poster_path)
         pic = req.urlopen(request)
         with open(os.path.basename(self.poster_path), 'wb') as localFile:
             localFile.write(pic.read())
-    
+
     def save(self, *args, **kwargs):
         #self.get_image_from_url()
         self.slug = slugify(self.id)

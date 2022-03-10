@@ -27,5 +27,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('movies/', include('movies.urls')),
     path('admin/', admin.site.urls),
+    path('user/' ,include('userprofile.urls',namespace="user"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
