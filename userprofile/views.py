@@ -1,3 +1,4 @@
+
 from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -90,3 +91,4 @@ def register(request):
             response.set_cookie('userToken', userToken)
 
             return response
+
