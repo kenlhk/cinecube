@@ -1,0 +1,25 @@
+{% extends 'movies/movies_base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    All the movies are listed here!
+{% endblock %}
+
+{% block body_block %}
+    <h1>All the Movies</h1>
+    <div>
+        {% if list %}
+            <ul>
+                <div class="flexbox-container">
+                {% for movie in list %}
+                    <div class="desc">
+                        <img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300">
+                        <br/><a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no movies present.</strong>
+        {% endif %}
+    </div>
+{% endblock %}

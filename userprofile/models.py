@@ -1,17 +1,25 @@
 
-   
 from django.db import models
-from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
 
 # Create your models here.
 
 
-class UserProfile(models.Model):
-	user = models.OneToOneField(User)
-	city = models.CharField(max_length=20)
-	phone_regex = RegexValidator(regex=r'^[7-9]\d{9}$', message="Phone number must be of 10 digits")
-	phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=10, null=True)
+class User(models.Model):
+    username = models.CharField('nickname', max_length=32, unique=True)  # nickname
+    password = models.CharField(max_length=200)  # password
+    email = models.CharField('email', max_length=64, unique=True)  # email
+    token = models.CharField(max_length=250, default='')
 
-	def __str__(self):
-		return self.user.username
+    # create user
+    @classmethod
+    def createuser(cls, username, password, email, token):
+        u = cls(username=username, password=password, email=email, token=token)
+        return u
+
+    class Meta:
+        db_table = 'users'
+
+    def __str__(self):
+        return self.username
+
+

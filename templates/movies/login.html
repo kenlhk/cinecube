@@ -1,0 +1,35 @@
+{% extends 'movies/user_base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Login
+{% endblock %}
+
+{% block body_block %}
+    <div class="content">
+        <div class="register">
+            <div class="col-md-6 login-left">
+                <h3>New User</h3>
+                <p>By registering an account, you can easily experience more features of the website.</p>
+                <a class="acount-btn" href={% url 'userprofile:register'  %}>Register Now</a>
+            </div>
+            <div class="col-md-6 login-right">
+                <h3>Login</h3>
+                <p>Already have an account, log in directly.</p>
+                <form method="post" action={% url 'userprofile:login' %}>
+                    {% csrf_token %}
+                    <div>
+                        <span>username<label>*</label></span>
+                        <input type="text" name="nickname">
+                    </div>
+                    <div>
+                        <span>password<label>*</label></span>
+                        <input type="password" name="password">
+                    </div>
+                    <input type="submit" value="Login now">
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+{% endblock %}
