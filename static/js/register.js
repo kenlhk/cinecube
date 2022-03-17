@@ -7,7 +7,7 @@ $(document).ready(function () {
             return;
         }
         
-        $.post('/register/', {'nickname':$(this).val()}, function (data, status) {
+        $.post('/user/register/', {'nickname':$(this).val()},function (data, status) {
             if(data.data == '1'){
                 $('#nickerror2').show();
             }
@@ -30,7 +30,7 @@ $(document).ready(function () {
             return;
         }
 
-        $.post('/register/', {'email':$(this).val()}, function (data, status) {
+        $.post('/user/register/', {'email':$(this).val()}, function (data, status) {
             if(data.data == '2'){
                 $('#emailerror2').show();
             }

@@ -68,17 +68,22 @@ def register(request):
                     return JsonResponse({'data':'3'})
                 # Indicates the account can use
                 return JsonResponse({'data':'0'})
+        # Verify that the account exists
+
 
         # If all information is verified, the registered user
         else:
             nickname = request.POST.get('nickname')
             email = request.POST.get('email')
             password = request.POST.get('password')
+            # try:
+            #     User.objects.get(username=nickname)
+            #     User.objects.get(email=email)
+            # except User.DoesNotExist as e:
+            #     return redirect('user:register')
 
             # User token
             userToken = make_password(nickname)
-
-
 
             # create user
             user = User.createuser(username=nickname, password=password, email=email, token=userToken)
