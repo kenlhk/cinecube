@@ -12,7 +12,7 @@ def index(request):
     context_dict = {}
     context_dict['title'] = "CineCube"
     context_dict['now_playing'] = Movie.objects.order_by('showing_time')[:5]
-    
+
     return render(request, 'movies/movies_index.html', context=context_dict)
 
 def movie_list(request):

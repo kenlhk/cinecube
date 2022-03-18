@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'userprofile',
     'payments',
     'contact',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,9 @@ EMAIL_HOST_PASSWORD = '*********'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+# Registration package
+REGISTRATION_OPEN = True
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = 'movies:index'
+LOGIN_URL = 'auth_login'

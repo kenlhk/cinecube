@@ -35,18 +35,23 @@
           </ul>
           <ul class="navbar-nav ms-auto">
             {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ user.username }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                  <li><a class="dropdown-item" href="{% url 'auth_password_change' %}">Change Password</a></li>
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'userprofile:logout' %}">Logout</a>
+              <a class="nav-link" href="{% url 'auth_logout' %}? next={% url 'movies:index' %}">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'userprofile:register' %}">Sign up</a>
+              <a class="nav-link" href="{% url 'registration_register' %}">Sign up</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'userprofile:login' %}">Login</a>
+              <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
             </li>
             {% endif %}
           </ul>

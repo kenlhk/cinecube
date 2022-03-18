@@ -7,5 +7,5 @@ from django.contrib import admin
 class UserprofileConfig(AppConfig):
     name = 'userprofile'
 
-admin.site.register(User)
+# admin.site.register(User)
 
