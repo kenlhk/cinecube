@@ -1,11 +1,8 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <style>
+{% block style %}
+<style>
     ul.errorlist {
         display:none;
     }
@@ -24,23 +21,28 @@
         font-size: 100%;
     }
     </style>
-</head>
-<body>
-{% if sent %}
-    <p class="sent">
-        Thank you for contacting us. We will be in touch soon.
-    </p>
-{% else %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <h2 class="text-center">Contact Us</h2>
+{% endblock %}
+
+{% block title_block %}
+    Contact
+{% endblock %}
+
+{% block body_block %}
+    {% if sent %}
+        <p class="sent">
+            Thank you for contacting us. We will be in touch soon.
+        </p>
+    {% else %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2 class="text-center">Contact Us</h2>
+            <br>
+            <table class="mx-auto">
+                {{ form }}
+                <td><input class="btn btn-primary" type="submit" value="Send"></td>
+            </table>
         <br>
-        <table class="mx-auto">
-            {{ form }}
-            <td><input class="btn btn-primary" type="submit" value="Send"></td>
-        </table>
-    <br>
-    </form>
-{% endif %}
-</body>
-</html>
+        </form>
+    {% endif %}
+{% endblock %}
+
