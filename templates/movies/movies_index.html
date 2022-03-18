@@ -1,8 +1,12 @@
-{% extends 'movies/movies_base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
-    Get the information about the latest movies here!
+    Home
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
