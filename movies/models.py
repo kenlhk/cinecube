@@ -12,6 +12,12 @@ from cinecube.settings import MEDIA_DIR, MEDIA_ROOT, MEDIA_URL, BASE_DIR
 # Create your models here.
 class Category(models.Model):
     genre = models.CharField(max_length = 256, unique = True)
+    #slug for category page
+    slug = models.SlugField()
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.genre)
+        super(Category, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.genre

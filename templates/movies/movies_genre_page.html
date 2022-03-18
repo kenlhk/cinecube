@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    All the categories are listed here!
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+    {% if category %}
+        <h1>{{ category.genre }}</h1>
+        {% if contents %}
+            {% for movie in contents %}
+            <div class="gallery">
+                <img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300">
+                <br/>
+                <a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <strong>No movies in category.</strong>
+        {% endif %}
+    {% else %}
+        This category does not exist.
+    {% endif %}
+{% endblock %}

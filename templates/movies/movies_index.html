@@ -1,15 +1,19 @@
-{% extends 'movies/movies_base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
-    Get the information about the latest movies here!
+    Home
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
     <h1>{{ title }}</h1>
     <div>
         <h2>You can book the ticket of those now-playing movies:</h2>
-        <div> <a href='/movies/movie_list/'>More</a> </div>
+        <div class="right-comment"> <a href='/movies/movie_list/'><i>Full now-playing list</i></a> </div>
         {% if now_playing %}
             <ul>
                 <div class="flexbox-container">

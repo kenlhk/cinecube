@@ -1,8 +1,12 @@
-{% extends 'movies/movies_base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
     All the movies are listed here!
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
@@ -10,11 +14,11 @@
     <div>
         {% if list %}
             <ul>
-                <div class="flexbox-container">
                 {% for movie in list %}
-                    <div class="desc">
+                    <div class="gallery">
                         <img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300">
-                        <br/><a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
+                        <br/>
+                        <a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
                     </div>
                 {% endfor %}
             </ul>
