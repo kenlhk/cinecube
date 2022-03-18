@@ -1,4 +1,4 @@
-{% extends 'movies/user_base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
@@ -13,7 +13,6 @@
     <script src="{% static 'js/register.js' %}"></script>
     <script src="{% static 'js/ajax_post_csrf.js' %}"></script>
 {% endblock %}
-
 {% block body_block %}
  <div class="content">
             <div class="register">

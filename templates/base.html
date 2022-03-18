@@ -13,6 +13,29 @@
                 Book your ticket today!
             {% endblock %}
         </title>
+
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+        <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css'/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
+        <script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
     </head>
     <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,13 +56,20 @@
               <a class="nav-link" href="{% url 'contact:contact' %}">Contact</a>
             </li>
           </ul>
-          <ul class="navbar-nav ms-auto">
+        {% if username %}
+        <ul class="navbar-nav ms-auto">
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'user:quit' %}">quit</a>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'user:register' %}">Sign Up</a>
+              <a class="nav-link">{{ username }}</a>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'user:register' %}">Sign up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'user:login' %}">Login</a>
             </li>
+        {% endif %}
           </ul>
         </div>
       </div>

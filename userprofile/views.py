@@ -2,7 +2,7 @@
 from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.hashers import make_password
 from .models import User
 
 
@@ -86,6 +86,7 @@ def register(request):
             userToken = make_password(nickname)
 
             # create user
+            password=make_password(password)
             user = User.createuser(username=nickname, password=password, email=email, token=userToken)
             user.save()
 
@@ -97,3 +98,9 @@ def register(request):
 
             return response
 
+
+# 退出页
+from django.contrib.auth import logout
+def quit(request):
+    logout(request)
+    return redirect('movies:index')
