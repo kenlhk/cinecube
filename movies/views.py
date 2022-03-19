@@ -44,6 +44,7 @@ def show_movie(request, movie_id_slug):
     try:
         movie = Movie.objects.get(slug=movie_id_slug)
         context_dict['movie'] = movie
+        context_dict['movie_id'] = movie_id_slug
     except Movie.DoesNotExitst:
         context_dict['movie'] = None
     
