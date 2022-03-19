@@ -30,5 +30,6 @@ urlpatterns = [
     path('user/' ,include('userprofile.urls',namespace="user")),
     path('contact/', include('contact.urls')),
     path('accounts/', include('registration.backends.simple.urls')),
+    path('booking/', include('booking.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

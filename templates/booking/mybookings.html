@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+   My Bookings
+{% endblock %}
+
+{% block body_block %}
+  
+    <div>
+        {% if error %}
+            <h1>You currently have no bookings.</h1>
+        {% else %}
+            <h2>Check our your bookings below:</h2>
+            {% for booking,movie in movie_booking %}
+                You have booked {{movie.name}} for {{booking.time}} on {{booking.date}} <br>
+                <br>
+            {% endfor %}
+        {% endif %}
+        <button name="button" type="submit" onclick="location.href='{% url "movies:index"%}'">Go Home</button>
+    </div>
+
+    
+{% endblock %}
