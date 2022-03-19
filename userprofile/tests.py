@@ -8,13 +8,14 @@ class LoginMethodsTests(TestCase):
 
     def test_ensure_login_are_positive(self):
         c = Client()
-        response = c.get('/user/login/',{'nickname':'shuang','password':'1234567qwe'})
+        response = c.post('/accounts/login/',{'nickname':'shuang','password':'1234567qwe'})
         print(response.status_code)
         self.assertEqual(response.status_code,200)
 
+
     def test_ensure_register_are_ositive(self):
         c= Client()
-        reponse = c.get('/user/register/',{
+        reponse = c.post('/accounts/register/',{
             'nickname':'testcase',
             'email':'123456@gmail.com',
             'password':'123456',

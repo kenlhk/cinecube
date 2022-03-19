@@ -5,29 +5,40 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cinecube.settings')
 
 import django
 django.setup()
-from userprofile.models import User
+from userprofile.models import UserProfile
+from django.contrib.auth.models import User
 
 def populate():
+
+    u1 = User(username="Aabbye",email="Aabbye12345@gmail.com")
+    u2 = User(username="Abby",email="Abby12345@gmail.com")
+    u3 = User(username="Abbie",email="Abbie12345@gmail.com")
+
+    u1.save()
+    u2.save()
+    u3.save()
+
     example_user = [
-        {'nickname': 'Tony',
-         'password': '123456qwe',
-         'email': 'Tony123456@gmail.com',
-         'token':'pbkdf2_sha256$120000$stCazQuy8XVG$a1I32j4KagSAL/8r6v7a8i898lynTdC0FmtdSqPajco='},
-        {'nickname': 'Alex',
-         'password': '123456qwe',
-         'email': 'Alex123456@gmail.com',
-         'token': 'pbkdf2_sha256$120000$qbOJ4SSo8bbe$TJJAUUkgTi0vcp5yHb0uXXeYbtSd2K2eSeWr5ry6a6A='},
-        {'nickname': 'Andy',
-         'password': '123456qwe',
-         'email': 'Andy123456@gmail.com',
-         'token': 'pbkdf2_sha256$120000$aadgeofStsjd$SxCRYL0HKKRgztgiv0aHoi5eTUFD9HtpV2bSIgFvxJE='},
+
+        {'user': u1,
+         'userID': "6e57ed57-1c61-44d9-8ed2-d85d41296c6c",
+         'address': 'qweqqweqweqw',
+         },
+        {'user': u2,
+         'userID': "ead72316-bbc4-4faa-9c8b-ea8190de9bc8",
+         'address': 'qweqqweqweqw',
+         },
+        {'user': u3,
+         'userID': "efc936b7-6ba0-4ca3-85a8-cea8f53dd76a",
+         'address': 'qweqqweqweqw',
+         },
         ]
 
     for u in example_user:
-        add_user(u['nickname'],u['email'],u['password'],u['token'])
+        add_user(u['user'],u['userID'],u['address'])
 
-def add_user(nickname,email,password,token):
-    user = User.objects.get_or_create(username=nickname,email=email,password=password,token=token)
+def add_user(user,userID,address):
+    user = UserProfile.objects.get_or_create(user=user,userID=userID,address=address)
     print(user)
 
 if __name__ == '__main__':
