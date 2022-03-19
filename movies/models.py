@@ -3,6 +3,9 @@ from distutils.command.upload import upload
 from encodings import utf_8
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+from userprofile.models import UserProfile
 
 import os
 import urllib.request as req
@@ -53,4 +56,11 @@ class Movie(models.Model):
     
     def __str__(self):
         return self.name
+
+class Review(models.Model):
+    target = models.ForeignKey(Movie, on_delete = models.CASCADE)   #the movie to be reviewed
+    # reviewer = models.ForeignKey(UserProfile, on_delete = models.CASCADE) #the user who comment
+    reviewer = models.CharField(max_length = 64)
+    comment = models.CharField(max_length = 512)
+    score = models.IntegerField(validators=[MaxValueValidator(10),MinValueValidator(1)])
     

@@ -18,7 +18,7 @@ def get_movies(request):
     
     url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + TMDB_KEY + "&language=en-US&page=1"
     
-    clear_database()
+    #clear_database()
     
     response = requests.get(url)
     data = response.json()

@@ -1,13 +1,15 @@
 
 from django.shortcuts import render
 from movies.load_info import get_movies
-from movies.models import Movie, Category
+from movies.populate_reviews import populate_reviews
+from movies.models import Movie, Category, Review
 
 # Create your views here.
 
 def index(request):
     
     get_movies(request)
+    populate_reviews()
     
     context_dict = {}
     context_dict['title'] = "CineCube"
@@ -45,9 +47,13 @@ def show_movie(request, movie_id_slug):
         movie = Movie.objects.get(slug=movie_id_slug)
         context_dict['movie'] = movie
         context_dict['movie_id'] = movie_id_slug
-    except Movie.DoesNotExitst:
+        
+        reviews = Review.objects.filter(target=movie)[:3]
+        context_dict['reviews'] = reviews 
+    except Movie.DoesNotExist:
         context_dict['movie'] = None
         context_dict['movie_id'] = None
+        context_dict['reviews'] = None
     
     return render(request, 'movies/movies_movie.html', context=context_dict)
 
@@ -61,7 +67,7 @@ def show_genre(request, genre_name_slug):
         context_dict['category'] = genre
         context_dict['contents'] = movies
         
-    except Movie.DoesNotExitst:
+    except Movie.DoesNotExist:
         context_dict['category'] = None
         context_dict['contents'] = None
     

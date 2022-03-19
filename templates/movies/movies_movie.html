@@ -36,8 +36,14 @@
                 
                     <div style="width:100%">
                         <div class="inline-block" style="width:60%">
-                            <div class="left-title">Reviews</div>
-                            <li><i>Alice: </i>"This is an exciting movie!"<strong>  (9)</strong></li>
+                            <div class="left-title"><strong>Reviews:</strong></div>
+                            {% if reviews %}
+                                {% for review in reviews %}
+                                    <li><i>{{ review.reviewer }}: </i>"{{ review.comment }}  "<strong>({{ review.score }}/10 stars)</strong></li>
+                                {% endfor %}
+                            {% else %}
+                                <strong>No reviews from users yet.</strong>
+                            {% endif %}
                         </div>
                         <div class="inline-block" style="width:30%">
                             <div class="button-box">
