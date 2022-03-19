@@ -47,6 +47,7 @@ def show_movie(request, movie_id_slug):
         context_dict['movie_id'] = movie_id_slug
     except Movie.DoesNotExitst:
         context_dict['movie'] = None
+        context_dict['movie_id'] = None
     
     return render(request, 'movies/movies_movie.html', context=context_dict)
 
