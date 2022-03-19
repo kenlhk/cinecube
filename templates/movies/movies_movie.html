@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ movie.name }}
+{% endblock %}
+
+{% block body_block %}
+    <h1>{{ movie.name }}</h1>
+    <div>
+        <h2>Infomation</h2>
+            <img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300">
+            <div>
+                <li><strong>Category: </strong>{{ movie.category }}</li>
+                <li><strong>Release Time: </strong>{{ movie.showing_time }}</li>
+                <li><strong>Description: </strong>{{ movie.description }}</li>
+            </div>
+        </ul>
+        <button name="button" type="submit" onclick="location.href='{% url "booking:book" movie_id %}'">Book {{ movie.name }}</button>
+    </div>
+{% endblock %}

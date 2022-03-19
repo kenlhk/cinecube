@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Home
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+    <h1>{{ title }}</h1>
+    <div>
+        <h2>You can book the ticket of those now-playing movies:</h2>
+        <div> <a href='/movies/movie_list/'>More</a> </div>
+        {% if now_playing %}
+            <ul>
+                <div class="flexbox-container">
+                {% for movie in now_playing %}
+                    <div class="desc">
+                        <img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300">
+                        <br/><a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no movies present.</strong>
+        {% endif %}
+
+        <button name="button"  onclick="location.href='{% url "booking:mybookings" %}'">My Bookings</button>
+    </div>
+{% endblock %}

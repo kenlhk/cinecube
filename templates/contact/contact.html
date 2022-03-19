@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block style %}
+<style>
+    ul.errorlist {
+        display:none;
+    }
+
+    input, textarea {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black
+    }
+
+    label {
+        font-size: 100%;
+    }
+    </style>
+{% endblock %}
+
+{% block title_block %}
+    Contact
+{% endblock %}
+
+{% block body_block %}
+    {% if sent %}
+        <p class="sent">
+            Thank you for contacting us. We will be in touch soon.
+        </p>
+    {% else %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2 class="text-center">Contact Us</h2>
+            <br>
+            <table class="mx-auto">
+                {{ form }}
+                <td><input class="btn btn-primary" type="submit" value="Send"></td>
+            </table>
+        <br>
+        </form>
+    {% endif %}
+{% endblock %}
+
