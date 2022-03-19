@@ -1,15 +1,9 @@
-from django.core.mail import send_mail
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-
-
-from booking import forms
 from movies.models import Movie, Category
-
 from .models import Booking
-
-from time import gmtime, strftime
 import datetime
+
 
 # Create your views here.
 def show_booking(request, movie_id):
@@ -18,10 +12,10 @@ def show_booking(request, movie_id):
         movie = Movie.objects.get(slug=movie_id)
         context_dict['movie_id'] = movie_id
         context_dict['movie'] = movie
-        context_dict['current_date'] = datetime.datetime.now().strftime ("%Y-%m-%d")
+        context_dict['current_date'] = datetime.datetime.now().strftime("%Y-%m-%d")
 
         now = datetime.datetime.now()
-        oneWeek = datetime.timedelta(weeks = 1)
+        oneWeek = datetime.timedelta(weeks=1)
         newDate = now + oneWeek
 
         context_dict['week_date'] = newDate.strftime("%Y-%m-%d")
@@ -40,20 +34,23 @@ def confirm_booking(request, movie_id):
         try:
             date = request.POST.get('date')
             time = request.POST.get('time')
+            user = request.user
 
             context_dict['movie_id'] = movie_id
-        
+
             context_dict['movie'] = movie
             context_dict['date'] = date
             context_dict['time'] = time
 
-            book = Booking.createbooking(movie_id=movie_id, date=date, time=time)
+            book = Booking.createbooking(movie_id=movie_id, date=date, time=time, user=user)
             book.save()
-        except:
-         context_dict['error'] = "Error with booking. Please try again."
+        except Exception as e:
+            print(e)
+            context_dict['error'] = "Error with booking. Please try again."
         return render(request, 'booking/confirm.html', context=context_dict)
     context_dict['error'] = "Error with booking. Please try again."
     return HttpResponseRedirect("", context=context_dict)
+
 
 # Create your views here.
 def my_bookings(request):
@@ -64,7 +61,8 @@ def my_bookings(request):
         bookings = Booking.objects.all()
 
         for b in bookings:
-            movies.append(Movie.objects.get(slug=b.movie_id))
+            if b.user == request.user:
+                movies.append(Movie.objects.get(slug=b.movie_id))
 
         context_dict['bookings'] = bookings
         context_dict['movies'] = movies
@@ -74,5 +72,3 @@ def my_bookings(request):
         context_dict['movies'] = None
         context_dict['error'] = "No current bookings."
     return render(request, 'booking/mybookings.html', context=context_dict)
-
-
