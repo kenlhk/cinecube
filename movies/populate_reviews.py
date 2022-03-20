@@ -25,7 +25,7 @@ def populate_reviews():
     
     i = 0
     for userobject in User.objects.all():
-        user[i] = UserProfile.objects.get(user=userobject)
+        user[i] = userobject
         i = i + 1
     
     reviews[0] = [target[0], user[0], "I like Tom Holland in movies like this. I wish the the action was a little a bit more exciting.", 6]
