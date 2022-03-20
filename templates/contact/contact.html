@@ -35,9 +35,9 @@
     {% else %}
         <form action="" method="post">
             {% csrf_token %}
-            <h2 class="text-center">Contact Us</h2>
+            <h1 class="text-center"><i class="fa-regular fa-envelope"></i>  Contact Us</h1>
             <br>
-            <table class="mx-auto">
+            <table class="mx-auto fs-5">
                 {{ form }}
                 <td><input class="btn btn-primary" type="submit" value="Send"></td>
             </table>

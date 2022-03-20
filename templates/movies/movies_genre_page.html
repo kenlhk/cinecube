@@ -15,7 +15,7 @@
         {% if contents %}
             {% for movie in contents %}
             <div class="gallery">
-                <img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300">
+                <a href='/movies/{{ movie.slug }}/'><img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300"></a>
                 <br/>
                 <a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
             </div>

@@ -15,7 +15,7 @@
     {% else %}
         <div>
             <h2>Booking Confirmed</h2>
-            <h3>Your booking for {{movie.name}} at {{time}} on {{date}}</h3>
+            <h3>Your booking for {{movie.name}} at {{time}} on {{date}} with {{ person }} people.</h3>
             <button name="button" type="submit" onclick="location.href='{% url "movies:index"%}'">Go Home</button>
         </div>
     {% endif %}

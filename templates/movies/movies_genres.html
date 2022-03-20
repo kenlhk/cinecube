@@ -10,11 +10,11 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>Categories Navigation</h1>
+    <h1><i class="fa-solid fa-bars-staggered"></i>  Categories Navigation</h1>
     <div>
         {% if list %}
             <h3><i>Pick one you like!</i></h3>
-            <table>
+            <table class="table table-hover table-borderless text-center">
                 {% for genre_item in list %}
                     <tr>
                         <td><a class="link-primary fs-5" href="/movies/category/{{ genre_item.slug }}">{{ genre_item.genre }}</a></td>

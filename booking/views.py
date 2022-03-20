@@ -34,6 +34,7 @@ def confirm_booking(request, movie_id):
         try:
             date = request.POST.get('date')
             time = request.POST.get('time')
+            person = request.POST.get('person')
             user = request.user
 
             context_dict['movie_id'] = movie_id
@@ -41,8 +42,9 @@ def confirm_booking(request, movie_id):
             context_dict['movie'] = movie
             context_dict['date'] = date
             context_dict['time'] = time
+            context_dict['person'] = person
 
-            book = Booking.createbooking(movie_id=movie_id, date=date, time=time, user=user)
+            book = Booking.createbooking(movie_id=movie_id, date=date, time=time, person=person, user=user)
             book.save()
         except Exception as e:
             print(e)

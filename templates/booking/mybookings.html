@@ -11,11 +11,23 @@
         {% if error %}
             <h1>You currently have no bookings.</h1>
         {% else %}
-            <h2>Check our your bookings below:</h2>
-            {% for booking,movie in movie_booking %}
-                You have booked {{movie.name}} for {{booking.time}} on {{booking.date}} <br>
-                <br>
-            {% endfor %}
+            <h1><i class="fa-solid fa-ticket"></i>  Your Booking</h1>
+            <ul class="list-group">
+                {% for booking,movie in movie_booking %}
+                    <li class="list-group-item p-3 m-2 fs-5">
+                        <i class="fa-solid fa-ticket"></i> #{{ booking.booking_id }}
+                        <br>
+                        Movie: <strong>{{ movie.name }}</strong>
+                        <br>
+                        Date: {{ booking.date }}
+                        <span> --- </span>
+                        Time: {{ booking.time }}
+                        <span> --- </span>
+                        Person: {{ booking.person }}
+
+                    </li>
+                {% endfor %}
+            </ul>
         {% endif %}
         <button name="button" type="submit" onclick="location.href='{% url "movies:index"%}'">Go Home</button>
     </div>
