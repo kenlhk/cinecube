@@ -131,3 +131,8 @@ dmypy.json
 
 #Intellij
 .idea/
+
+#Django
+*/migrations/*
+.history/
+*/__pycache__/*
