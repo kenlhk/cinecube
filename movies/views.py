@@ -10,7 +10,7 @@ from movies import forms
 
 def index(request):
     get_movies(request)
-    # populate_reviews()
+    populate_reviews()
 
     context_dict = {}
     context_dict['title'] = "CineCube"
