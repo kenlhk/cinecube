@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    All the categories are listed here!
+    Categories
 {% endblock %}
 
 {% block style %}
@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>Category Navigation</h1>
+    <h1>Categories Navigation</h1>
     <div>
         {% if list %}
             <h3><i>Pick one you like!</i></h3>
             <table>
                 {% for genre_item in list %}
                     <tr>
-                        <td><a href="/movies/category/{{ genre_item.slug }}">{{ genre_item.genre }}</a></td>
+                        <td><a class="link-primary fs-5" href="/movies/category/{{ genre_item.slug }}">{{ genre_item.genre }}</a></td>
                     </tr>
                 {% endfor %}
             </table>

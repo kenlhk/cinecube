@@ -5,27 +5,23 @@
     Home
 {% endblock %}
 
-{% block style %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/movies_style.css' %}"/>
-{% endblock %}
-
 {% block body_block %}
-    <h1>{{ title }}</h1>
-    <div>
-        <h2>You can book the ticket of those now-playing movies:</h2>
-        <div class="right-comment"> <a href='/movies/movie_list/'><i>Full now-playing list</i></a> </div>
-        {% if now_playing %}
-            <ul>
-                <div class="flexbox-container">
-                {% for movie in now_playing %}
-                    <div class="desc">
-                        <img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300">
-                        <br/><a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
-                    </div>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no movies present.</strong>
-        {% endif %}
+    <h1>Welcome to <i class="text-primary fw-bolder">CineCube</i>!</h1>
+    <h2>You can book the ticket of those now-playing movies:</h2>
+    {% if now_playing %}
+    <div class="container m-0 p-3">
+        <div class="row">
+            {% for movie in now_playing %}
+                <div class="col text-center">
+                    <a href='/movies/{{ movie.slug }}/'><img src={{ movie.poster_path }} alt={{ movie.name }} width="200" height="300"></a>
+                    <br/>
+                    <a href='/movies/{{ movie.slug }}/'>{{ movie.name }}</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+    {% else %}
+        <strong>There are no movies present.</strong>
+    {% endif %}
+    <a class="row" href='/movies/movie_list/'><i class="text-end fs-4 fw-bolder">More movies</i></a>
 {% endblock %}
