@@ -8,6 +8,9 @@ from cinecube.settings import MEDIA_DIR, MEDIA_ROOT
 
 def get_movies(request):
     
+    # preparing updating information
+    # clear_database()
+        
     genre_dict = {12:"Adventure", 14:"Fantasy", 16:"Animation", 18:"Drama",
                       27:"Horror", 28:"Action", 35:"Comedy", 36:"History", 
                       37:"Western", 53:"Thriller", 80:"Crime", 99:"Documentary", 
@@ -16,10 +19,29 @@ def get_movies(request):
     
     TMDB_KEY = read_tmdb_key()
     
+    # load the 10 movies mentioned in populate_reviews.py, which is necessary
+    must_load_movies = ["335787", "406759", "615904", "823625", "800510", 
+                        "646385", "760926", "414906", "508947", "871799",]
+    
+    for movie_id in must_load_movies:
+        search_url = "https://api.themoviedb.org/3/movie/" + movie_id + "?api_key=" + TMDB_KEY + "&language=en-US"
+        response = requests.get(search_url)
+        data = response.json()
+        genres = data['genres']
+        movie_data = Movie(
+            id = movie_id,
+            category = set_genre_by_tuple(genres, genre_dict),
+            name = data['title'],
+            description = data['overview'],
+            showing_time = get_date(data['release_date']),
+            poster_path = set_poster_path(data['poster_path']),
+        )
+        movie_data.save()
+    
+    # load the dynamic now-playing movies
+    
     url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + TMDB_KEY + "&language=en-US&page=1"
-    
-    #clear_database()
-    
+       
     response = requests.get(url)
     data = response.json()
     movies = data['results']
@@ -34,10 +56,17 @@ def get_movies(request):
                 poster_path = set_poster_path(movie['poster_path']),
         )
         movie_data.save()
-    
         
 def set_genre(genre_ids, dict):
     for key in genre_ids:
+        if key in dict.keys():   
+            genre = get_or_add_genre(dict[key])
+            return genre
+    return "unknown_type"
+
+def set_genre_by_tuple(genres, dict):
+    for genre in genres:
+        key = genre['id']
         if key in dict.keys():   
             genre = get_or_add_genre(dict[key])
             return genre
