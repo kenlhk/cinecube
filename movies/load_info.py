@@ -6,7 +6,7 @@ import os
 
 from cinecube.settings import MEDIA_DIR, MEDIA_ROOT
 
-def get_movies(request):
+def get_movies():
     
     # preparing updating information
     # clear_database()

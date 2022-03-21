@@ -9,7 +9,7 @@ from movies import forms
 # Create your views here.
 
 def index(request):
-    get_movies(request)
+    get_movies()
     # populate_reviews()
 
     context_dict = {}

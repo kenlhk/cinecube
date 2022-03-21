@@ -6,7 +6,7 @@ class ReviewForm(forms.ModelForm):
     comment = forms.CharField(label="", widget=forms.Textarea(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Please your review here (Max characters = 512)',
+            'placeholder': 'Please input your review here (Max characters = 512)',
             'rows': 5,
             'cols': 50
         }))
