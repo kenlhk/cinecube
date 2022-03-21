@@ -1,5 +1,4 @@
 from movies.models import Movie, Review
-from userprofile.models import UserProfile
 from django.contrib.auth.models import User
 
 def populate_reviews():
