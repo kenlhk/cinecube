@@ -1,15 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import DateTimeField
 from django.template.defaultfilters import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator
-
-from userprofile.models import UserProfile
 
 import os
 import urllib.request as req
 
-from cinecube.settings import MEDIA_DIR, MEDIA_ROOT, MEDIA_URL, BASE_DIR
 
 
 # Create your models here.

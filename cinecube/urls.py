@@ -27,7 +27,6 @@ urlpatterns = [
     path('movies/', include('movies.urls')),
     path('payments/', include('payments.urls')),
     path('admin/', admin.site.urls),
-    path('user/' ,include('userprofile.urls',namespace="user")),
     path('contact/', include('contact.urls')),
     path('accounts/', include('registration.backends.simple.urls')),
     path('booking/', include('booking.urls',namespace="booking")),

@@ -25,7 +25,11 @@ def contact(request):
             
             From: {} - {}
             '''.format(data['message'], data['name'],data['email'])
-            send_mail(data['subject'], message, '', ['cinecubeitech@gmail.com'])
+            try:
+                send_mail(data['subject'], message, '', ['cinecubeitech@gmail.com'])
+            except Exception as e:
+                # Ignore the smtp error message for showcase purpose
+                print(e)
 
             return HttpResponseRedirect('/contact?sent=True')
     else:
