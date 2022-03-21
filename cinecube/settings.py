@@ -140,8 +140,11 @@ MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'cinecubeitech@gmail.com'
-EMAIL_HOST_PASSWORD = '*********'
+EMAIL_HOST_USER = 'icinecube@gmail.com'
+with open("gmail.key", "r") as myfile:
+    key = myfile.readlines()
+    print(key)
+EMAIL_HOST_PASSWORD = key[0]
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
